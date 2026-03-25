@@ -33,7 +33,7 @@
   // must maintain for screen reader compliance.
 
   function findFeedPosts() {
-    return Array.from(document.querySelectorAll('[role="feed"] [role="article"]'))
+    return Array.from(document.querySelectorAll('[role="article"]'))
       .filter(el => !processedPosts.has(el));
   }
 
@@ -251,15 +251,16 @@
 
   // Start observing once the feed is present
   function startObserving() {
-    const feed = document.querySelector('[role="feed"]');
-    if (feed) {
-      feedObserver.observe(feed, {
-        childList: true,
-        subtree: true
-      });
-      scanFeed(); // initial scan
+    const articles = document.querySelectorAll('[role="article"]');
+    if (articles.length > 0) {
+      // Observe the best available container
+      const target = document.querySelector('[role="feed"]')
+        || document.querySelector('[role="main"]')
+        || document.body;
+      feedObserver.observe(target, { childList: true, subtree: true });
+      scanFeed();
     } else {
-      // Feed not yet loaded — retry
+      // Posts not yet loaded — retry
       setTimeout(startObserving, 1000);
     }
   }
