@@ -1,0 +1,259 @@
+/* ═══════════════════════════════════════════════════════
+   HOFFMAN LENSES — Overlay Styles
+   Injected into social media pages.
+   All classes namespaced with hl- to avoid conflicts.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── Session bar ─────────────────────────────────────── */
+#hl-session-bar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 2147483647 !important; /* max z-index */
+  background: rgba(8, 14, 22, 0.97) !important;
+  border-bottom: 1px solid rgba(26, 58, 92, 0.5) !important;
+  backdrop-filter: blur(8px) !important;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+.hl-sb-inner {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 8px 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+}
+
+.hl-sb-logo {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-shrink: 0 !important;
+}
+
+.hl-sb-logo-icon {
+  color: #8B1A1A !important;
+  font-size: 14px !important;
+}
+
+.hl-sb-logo-text {
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.2em !important;
+  color: #C0D0E0 !important;
+  white-space: nowrap !important;
+}
+
+.hl-sb-stats {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+  flex: 1 !important;
+  flex-wrap: wrap !important;
+}
+
+.hl-sb-stat {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1px !important;
+  padding: 0 14px !important;
+}
+
+.hl-sb-stat-label {
+  font-size: 9px !important;
+  color: #4A6080 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+.hl-sb-stat-val {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #C0D0E0 !important;
+  white-space: nowrap !important;
+}
+
+.hl-stat-good   { color: #3AAA70 !important; }
+.hl-stat-warn   { color: #D08030 !important; }
+.hl-stat-danger { color: #E04040 !important; }
+
+.hl-sb-sep {
+  width: 1px !important;
+  height: 28px !important;
+  background: rgba(26, 58, 92, 0.4) !important;
+  flex-shrink: 0 !important;
+}
+
+.hl-sb-toggle {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.15em !important;
+  padding: 5px 12px !important;
+  border: 1px solid #3AAA70 !important;
+  background: rgba(58, 170, 112, 0.1) !important;
+  color: #3AAA70 !important;
+  cursor: pointer !important;
+  border-radius: 2px !important;
+  flex-shrink: 0 !important;
+  transition: all 0.2s !important;
+}
+
+.hl-sb-toggle:hover {
+  background: rgba(58, 170, 112, 0.2) !important;
+}
+
+.hl-sb-toggle-off {
+  border-color: #4A6080 !important;
+  background: transparent !important;
+  color: #4A6080 !important;
+}
+
+/* ── Post border highlighting ────────────────────────── */
+.hl-post-danger {
+  border-left: 3px solid rgba(224, 64, 64, 0.6) !important;
+  padding-left: 2px !important;
+}
+
+.hl-post-warn {
+  border-left: 3px solid rgba(208, 128, 48, 0.5) !important;
+  padding-left: 2px !important;
+}
+
+/* ── Annotation wrapper ──────────────────────────────── */
+.hl-annotation-wrap {
+  position: relative !important;
+  width: 100% !important;
+  margin-top: 0 !important;
+}
+
+/* ── Annotation box ──────────────────────────────────── */
+.hl-annotation {
+  background: rgba(8, 14, 22, 0.97) !important;
+  border-top: 1px solid rgba(26, 58, 92, 0.4) !important;
+  border-left: 3px solid transparent !important;
+  padding: 10px 14px !important;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace !important;
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+.hl-annotation-danger {
+  border-left-color: #E04040 !important;
+}
+
+.hl-annotation-warn {
+  border-left-color: #D08030 !important;
+}
+
+.hl-annotation-info {
+  border-left-color: #4A80D0 !important;
+}
+
+/* ── Annotation header ───────────────────────────────── */
+.hl-annotation-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 8px !important;
+  padding-bottom: 6px !important;
+  border-bottom: 1px solid rgba(26, 58, 92, 0.3) !important;
+}
+
+.hl-annotation-logo {
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.15em !important;
+  color: #4A6080 !important;
+  text-transform: uppercase !important;
+}
+
+.hl-flag-count {
+  font-size: 10px !important;
+  color: #4A6080 !important;
+  letter-spacing: 0.1em !important;
+}
+
+/* ── Individual flag ─────────────────────────────────── */
+.hl-flag {
+  display: flex !important;
+  gap: 10px !important;
+  align-items: flex-start !important;
+  padding: 6px 0 !important;
+  border-bottom: 1px solid rgba(26, 58, 92, 0.15) !important;
+}
+
+.hl-flag:last-child {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+/* ── Severity dot ────────────────────────────────────── */
+.hl-dot {
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  flex-shrink: 0 !important;
+  margin-top: 4px !important;
+}
+
+.hl-dot-danger { background: #E04040 !important; }
+.hl-dot-warn   { background: #D08030 !important; }
+.hl-dot-info   { background: #4A80D0 !important; }
+
+/* ── Flag body ───────────────────────────────────────── */
+.hl-flag-body {
+  flex: 1 !important;
+}
+
+.hl-flag-label {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #C0D0E0 !important;
+  margin-bottom: 2px !important;
+  letter-spacing: 0.04em !important;
+}
+
+.hl-flag-danger .hl-flag-label { color: #E07070 !important; }
+.hl-flag-warn   .hl-flag-label { color: #D09040 !important; }
+.hl-flag-info   .hl-flag-label { color: #6A90D0 !important; }
+
+.hl-flag-detail {
+  font-size: 10px !important;
+  color: #6A8090 !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.hl-confidence {
+  font-size: 9px !important;
+  color: #4A6080 !important;
+  font-weight: 400 !important;
+}
+
+/* ── Clean post indicator ────────────────────────────── */
+.hl-clean-mark {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  background: rgba(58, 170, 112, 0.4) !important;
+  border: 1px solid rgba(58, 170, 112, 0.6) !important;
+  cursor: default !important;
+  z-index: 100 !important;
+}
+
+/* ── Push page content down to accommodate session bar ── */
+/* We add padding to the body so Facebook's content isn't hidden */
+body.hl-active {
+  padding-top: 44px !important;
+}

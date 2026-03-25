@@ -1,0 +1,69 @@
+{
+  "manifest_version": 3,
+  "name": "Hoffman Lenses",
+  "version": "0.1.0",
+  "description": "Making the invisible visible. Real-time annotation of behavioral manipulation systems on social media feeds.",
+
+  "homepage_url": "https://hoffmanlenses.org",
+
+  "icons": {
+    "16":  "icons/icon-16.png",
+    "48":  "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16":  "icons/icon-16.png",
+      "48":  "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    },
+    "default_title": "Hoffman Lenses"
+  },
+
+  "background": {
+    "scripts": ["background/worker.js"],
+    "type": "module"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.facebook.com/*"
+      ],
+      "js": [
+        "content/core.js",
+        "content/platforms/facebook.js",
+        "content/overlay.js"
+      ],
+      "css": [
+        "styles/overlay.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "permissions": [
+    "storage",
+    "alarms"
+  ],
+
+  "host_permissions": [
+    "*://*.facebook.com/*"
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["styles/overlay.css"],
+      "matches": ["*://*.facebook.com/*"]
+    }
+  ],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "extension@hoffmanlenses.org",
+      "strict_min_version": "109.0"
+    }
+  }
+}
