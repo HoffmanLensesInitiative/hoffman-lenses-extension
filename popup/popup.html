@@ -1,111 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hoffman Lenses</title>
-  <link rel="stylesheet" href="popup.css">
+<meta charset="UTF-8">
+<title>Hoffman Lenses</title>
+<link rel="stylesheet" href="popup.css">
 </head>
 <body>
-
-  <div class="popup-wrap">
-
-    <div class="popup-header">
-      <div class="popup-logo">
-        <span class="popup-logo-icon">◎</span>
-        <div class="popup-logo-text">
-          <span class="popup-logo-name">HOFFMAN LENSES</span>
-          <span class="popup-logo-tag">Making the invisible visible.</span>
-        </div>
-      </div>
-      <div class="popup-toggle-wrap">
-        <label class="popup-toggle">
-          <input type="checkbox" id="toggle-active" checked>
-          <span class="popup-toggle-slider"></span>
-        </label>
+<div class="wrap">
+  <div class="header">
+    <div class="logo">
+      <span class="logo-icon">o</span>
+      <div>
+        <div class="logo-name">HOFFMAN LENSES</div>
+        <div class="logo-tag">Making the invisible visible.</div>
       </div>
     </div>
-
-    <div class="popup-platform" id="popup-platform">
-      <span class="platform-label">Platform</span>
-      <span class="platform-name" id="platform-name">—</span>
-    </div>
-
-    <div class="popup-stats">
-      <div class="stat-card">
-        <div class="stat-label">Session time</div>
-        <div class="stat-val" id="stat-time">0:00</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Posts scanned</div>
-        <div class="stat-val" id="stat-posts">0</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">From your network</div>
-        <div class="stat-val stat-good" id="stat-network">—</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Inserted</div>
-        <div class="stat-val stat-danger" id="stat-inserted">—</div>
-      </div>
-    </div>
-
-    <div class="popup-escalation">
-      <div class="escalation-label">
-        <span>Escalation score</span>
-        <span class="escalation-val" id="escalation-val">—</span>
-      </div>
-      <div class="escalation-bar">
-        <div class="escalation-fill" id="escalation-fill"></div>
-      </div>
-      <div class="escalation-desc" id="escalation-desc">
-        Waiting for data...
-      </div>
-    </div>
-
-    <div class="popup-flags">
-      <div class="flags-label">Flags this session</div>
-      <div class="flags-grid">
-        <div class="flag-item">
-          <span class="flag-dot flag-dot-warn"></span>
-          <span class="flag-type">Sponsored</span>
-          <span class="flag-count" id="flag-sponsored">0</span>
-        </div>
-        <div class="flag-item">
-          <span class="flag-dot flag-dot-danger"></span>
-          <span class="flag-type">Inserted</span>
-          <span class="flag-count" id="flag-inserted">0</span>
-        </div>
-        <div class="flag-item">
-          <span class="flag-dot flag-dot-warn"></span>
-          <span class="flag-type">Old content</span>
-          <span class="flag-count" id="flag-old">0</span>
-        </div>
-        <div class="flag-item">
-          <span class="flag-dot flag-dot-danger"></span>
-          <span class="flag-type">Engagement bait</span>
-          <span class="flag-count" id="flag-bait">0</span>
-        </div>
-        <div class="flag-item">
-          <span class="flag-dot flag-dot-danger"></span>
-          <span class="flag-type">Not in network</span>
-          <span class="flag-count" id="flag-network">0</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="popup-actions">
-      <button class="popup-btn popup-btn-reset" id="btn-reset">Reset session</button>
-      <a href="https://hoffmanlenses.org" target="_blank" class="popup-btn popup-btn-site">hoffmanlenses.org</a>
-    </div>
-
-    <div class="popup-footer">
-      <span>v0.1.0 — Phase 1 — Facebook</span>
-      <span>Open source · MIT License</span>
-    </div>
-
+    <label class="toggle">
+      <input type="checkbox" id="active" checked>
+      <span class="toggle-slider"></span>
+    </label>
   </div>
 
-  <script src="popup.js"></script>
+  <div class="site-row">
+    <span class="site-label">Current site</span>
+    <span class="site-val" id="site">--</span>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-label">Session</div><div class="stat-val" id="duration">0:00</div></div>
+    <div class="stat"><div class="stat-label">Scanned</div><div class="stat-val" id="scanned">0</div></div>
+    <div class="stat"><div class="stat-label">Flagged</div><div class="stat-val danger" id="flagged">0</div></div>
+    <div class="stat"><div class="stat-label">Escalation</div><div class="stat-val" id="escalation">--</div></div>
+  </div>
+
+  <div class="patterns-header">Pattern breakdown</div>
+  <div class="patterns" id="patterns">
+    <div class="pattern-empty">No flags this session.</div>
+  </div>
+
+  <div class="actions">
+    <button id="reset">Reset session</button>
+    <a href="https://hoffmanlenses.org" target="_blank">hoffmanlenses.org</a>
+  </div>
+
+  <div class="footer">v0.2.0 -- Universal -- hoffmanlenses.org</div>
+</div>
+<script src="popup.js"></script>
 </body>
 </html>

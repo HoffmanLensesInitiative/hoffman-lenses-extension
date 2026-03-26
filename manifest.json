@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "Hoffman Lenses",
-  "version": "0.1.0",
-  "description": "Making the invisible visible. Real-time annotation of behavioral manipulation systems on social media feeds.",
+  "version": "0.2.0",
+  "description": "Making the invisible visible. Reads manipulation patterns in text on every website you visit.",
   "homepage_url": "https://hoffmanlenses.org",
 
   "icons": {
@@ -28,17 +28,13 @@
 
   "content_scripts": [
     {
-      "matches": [
-        "*://*.facebook.com/*"
-      ],
+      "matches": ["<all_urls>"],
       "js": [
-        "content/core.js",
-        "content/overlay.js",
-        "content/platforms/facebook.js"
+        "content/hl-detect.js",
+        "content/reader.js",
+        "content/overlay.js"
       ],
-      "css": [
-        "styles/overlay.css"
-      ],
+      "css": ["styles/overlay.css"],
       "run_at": "document_idle"
     }
   ],
@@ -46,12 +42,10 @@
   "permissions": [
     "storage",
     "alarms",
-    "*://*.facebook.com/*"
+    "<all_urls>"
   ],
 
-  "web_accessible_resources": [
-    "styles/overlay.css"
-  ],
+  "web_accessible_resources": ["styles/overlay.css"],
 
   "browser_specific_settings": {
     "gecko": {

@@ -1,111 +1,72 @@
-// ═══════════════════════════════════════════════════════
-// HOFFMAN LENSES — Popup Script
-// Reads session state from background worker and renders it.
-// ═══════════════════════════════════════════════════════
+function update(response) {
+  if (!response || !response.session) return;
+  var s = response.session;
 
-function updateUI(response) {
-  if (!response) return;
-  const { session, escalationLevel, networkRatio, insertedRatio, duration } = response;
-  if (!session) return;
+  var dur = document.getElementById('duration');
+  var scanned = document.getElementById('scanned');
+  var flagged = document.getElementById('flagged');
+  var esc = document.getElementById('escalation');
+  var site = document.getElementById('site');
+  var patterns = document.getElementById('patterns');
 
-  // Time
-  const timeEl = document.getElementById('stat-time');
-  if (timeEl) timeEl.textContent = duration || '0:00';
+  if (dur) dur.textContent = response.duration || '0:00';
+  if (scanned) scanned.textContent = s.blocksScanned || 0;
+  if (site) site.textContent = s.hostname || '--';
 
-  // Posts
-  const postsEl = document.getElementById('stat-posts');
-  if (postsEl) postsEl.textContent = session.postsScanned || 0;
-
-  // Platform
-  const platformEl = document.getElementById('platform-name');
-  if (platformEl) {
-    platformEl.textContent = session.platform
-      ? session.platform.charAt(0).toUpperCase() + session.platform.slice(1)
-      : '—';
+  if (flagged) {
+    flagged.textContent = s.blocksFlagged || 0;
+    flagged.className = 'stat-val ' + (s.blocksFlagged > 0 ? 'danger' : 'good');
   }
 
-  // Network ratio
-  const networkEl = document.getElementById('stat-network');
-  if (networkEl) {
-    networkEl.textContent = networkRatio !== undefined ? `${networkRatio}%` : '—';
-    networkEl.className = 'stat-val ' + (
-      networkRatio > 50 ? 'stat-good' :
-      networkRatio > 20 ? 'stat-warn' : 'stat-danger'
-    );
+  if (esc) {
+    var level = response.escalationLevel || 'low';
+    esc.textContent = level.toUpperCase() + ' (' + (s.escalationScore || 0) + ')';
+    esc.className = 'stat-val ' + (level === 'low' ? 'good' : level === 'medium' ? 'warn' : 'danger');
   }
 
-  // Inserted ratio
-  const insertedEl = document.getElementById('stat-inserted');
-  if (insertedEl) {
-    insertedEl.textContent = insertedRatio !== undefined ? `${insertedRatio}%` : '—';
-    insertedEl.className = 'stat-val ' + (
-      insertedRatio < 30 ? 'stat-good' :
-      insertedRatio < 60 ? 'stat-warn' : 'stat-danger'
-    );
+  if (patterns) {
+    var counts = s.patternCounts || {};
+    var keys = Object.keys(counts);
+    if (keys.length === 0) {
+      patterns.innerHTML = '<div class="pattern-empty">No flags this session.</div>';
+    } else {
+      var labels = {
+        suppression_framing: 'Suppression framing',
+        false_urgency: 'False urgency',
+        incomplete_hook: 'Incomplete hook',
+        outrage_engineering: 'Outrage engineering',
+        false_authority: 'Unnamed authority',
+        tribal_activation: 'Tribal activation',
+        engagement_directive: 'Engagement directive'
+      };
+      var html = keys
+        .sort(function(a,b){ return counts[b] - counts[a]; })
+        .map(function(k) {
+          return '<div class="pattern-row">' +
+            '<span class="pattern-name">' + (labels[k] || k) + '</span>' +
+            '<span class="pattern-count">' + counts[k] + '</span>' +
+          '</div>';
+        }).join('');
+      patterns.innerHTML = html;
+    }
   }
 
-  // Escalation
-  const score = session.escalationScore || 0;
-  const level = escalationLevel || 'low';
-
-  const escValEl = document.getElementById('escalation-val');
-  if (escValEl) {
-    escValEl.textContent = `${score}/100`;
-    escValEl.className = 'escalation-val esc-' + level;
-  }
-
-  const escFillEl = document.getElementById('escalation-fill');
-  if (escFillEl) {
-    escFillEl.style.width = `${score}%`;
-    escFillEl.className = 'escalation-fill esc-fill-' + level;
-  }
-
-  const escDescEl = document.getElementById('escalation-desc');
-  if (escDescEl) {
-    const descs = {
-      low:    'Feed composition looks relatively normal.',
-      medium: 'Moderate algorithmic manipulation detected.',
-      high:   'Heavy manipulation detected. Most content is algorithmically inserted.'
-    };
-    escDescEl.textContent = descs[level] || '';
-  }
-
-  // Flag counts
-  const flags = session.flagsByType || {};
-  const set = (id, val) => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = val || 0;
-  };
-  set('flag-sponsored', flags.sponsored);
-  set('flag-inserted',  flags.inserted);
-  set('flag-old',       flags.old_content);
-  set('flag-bait',      flags.engagement_bait);
-  set('flag-network',   flags.not_in_network);
-
-  // Toggle state
-  const toggle = document.getElementById('toggle-active');
-  if (toggle) toggle.checked = session.active !== false;
+  var toggle = document.getElementById('active');
+  if (toggle) toggle.checked = s.active !== false;
 }
 
-// ── Load session state ────────────────────────────────────
-chrome.runtime.sendMessage({ type: 'GET_SESSION' }, updateUI);
+chrome.runtime.sendMessage({ type: 'GET_SESSION' }, update);
 
-// ── Toggle handler ────────────────────────────────────────
-document.getElementById('toggle-active').addEventListener('change', function () {
-  chrome.runtime.sendMessage({
-    type: 'TOGGLE_ACTIVE',
-    data: { active: this.checked }
+document.getElementById('active').addEventListener('change', function() {
+  chrome.runtime.sendMessage({ type: 'TOGGLE', data: { active: this.checked } });
+});
+
+document.getElementById('reset').addEventListener('click', function() {
+  chrome.runtime.sendMessage({ type: 'RESET' }, function() {
+    chrome.runtime.sendMessage({ type: 'GET_SESSION' }, update);
   });
 });
 
-// ── Reset handler ─────────────────────────────────────────
-document.getElementById('btn-reset').addEventListener('click', function () {
-  chrome.runtime.sendMessage({ type: 'RESET_SESSION' }, () => {
-    chrome.runtime.sendMessage({ type: 'GET_SESSION' }, updateUI);
-  });
-});
-
-// ── Refresh every 5 seconds while popup is open ───────────
-setInterval(() => {
-  chrome.runtime.sendMessage({ type: 'GET_SESSION' }, updateUI);
+setInterval(function() {
+  chrome.runtime.sendMessage({ type: 'GET_SESSION' }, update);
 }, 5000);

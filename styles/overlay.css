@@ -1,259 +1,392 @@
-/* ═══════════════════════════════════════════════════════
-   HOFFMAN LENSES — Overlay Styles
-   Injected into social media pages.
-   All classes namespaced with hl- to avoid conflicts.
-   ═══════════════════════════════════════════════════════ */
+/* Hoffman Lenses - Overlay Styles v0.2.3 */
+/* Icon-based ambient annotation system */
 
-/* ── Session bar ─────────────────────────────────────── */
-#hl-session-bar {
+/* ── Session bar ── */
+#hl-bar {
   position: fixed !important;
-  top: 0 !important;
+  bottom: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  z-index: 2147483647 !important; /* max z-index */
-  background: rgba(8, 14, 22, 0.97) !important;
-  border-bottom: 1px solid rgba(26, 58, 92, 0.5) !important;
+  z-index: 2147483647 !important;
+  background: rgba(6,10,16,0.97) !important;
+  border-top: 1px solid rgba(26,58,92,0.5) !important;
+  font-family: 'JetBrains Mono','Fira Code','Courier New',monospace !important;
   backdrop-filter: blur(8px) !important;
-  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 -2px 20px rgba(0,0,0,0.4) !important;
 }
 
-.hl-sb-inner {
-  max-width: 1200px !important;
+.hl-bar-inner {
+  max-width: 1400px !important;
   margin: 0 auto !important;
-  padding: 8px 20px !important;
+  padding: 6px 20px !important;
   display: flex !important;
   align-items: center !important;
-  gap: 20px !important;
+  gap: 16px !important;
 }
 
-.hl-sb-logo {
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
+.hl-bar-logo {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em !important;
+  color: #8B1A1A !important;
+  white-space: nowrap !important;
   flex-shrink: 0 !important;
 }
 
-.hl-sb-logo-icon {
-  color: #8B1A1A !important;
-  font-size: 14px !important;
-}
-
-.hl-sb-logo-text {
-  font-size: 10px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.2em !important;
-  color: #C0D0E0 !important;
-  white-space: nowrap !important;
-}
-
-.hl-sb-stats {
+.hl-bar-stats {
   display: flex !important;
   align-items: center !important;
-  gap: 0 !important;
   flex: 1 !important;
   flex-wrap: wrap !important;
 }
 
-.hl-sb-stat {
+.hl-bar-stat {
   display: flex !important;
   flex-direction: column !important;
+  padding: 0 12px !important;
   gap: 1px !important;
-  padding: 0 14px !important;
 }
 
-.hl-sb-stat-label {
-  font-size: 9px !important;
-  color: #4A6080 !important;
+.hl-bar-label {
+  font-size: 8px !important;
+  color: #3A5060 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
-  white-space: nowrap !important;
 }
 
-.hl-sb-stat-val {
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  color: #C0D0E0 !important;
-  white-space: nowrap !important;
+.hl-bar-val {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #8A9AAA !important;
 }
 
-.hl-stat-good   { color: #3AAA70 !important; }
-.hl-stat-warn   { color: #D08030 !important; }
-.hl-stat-danger { color: #E04040 !important; }
-
-.hl-sb-sep {
+.hl-bar-sep {
   width: 1px !important;
-  height: 28px !important;
-  background: rgba(26, 58, 92, 0.4) !important;
+  height: 24px !important;
+  background: rgba(26,58,92,0.4) !important;
   flex-shrink: 0 !important;
 }
 
-.hl-sb-toggle {
-  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
-  font-size: 10px !important;
-  font-weight: 600 !important;
+.hl-good   { color: #3AAA70 !important; }
+.hl-warn   { color: #D08030 !important; }
+.hl-danger { color: #E04040 !important; }
+.hl-muted  { color: #3A5060 !important; }
+
+.hl-clickable {
+  cursor: pointer !important;
+  text-decoration: underline !important;
+  text-decoration-style: dotted !important;
+  text-underline-offset: 3px !important;
+}
+
+.hl-clickable:hover { opacity: 0.75 !important; }
+
+.hl-bar-btn {
+  font-family: 'JetBrains Mono',monospace !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
   letter-spacing: 0.15em !important;
-  padding: 5px 12px !important;
+  padding: 4px 10px !important;
   border: 1px solid #3AAA70 !important;
-  background: rgba(58, 170, 112, 0.1) !important;
+  background: rgba(58,170,112,0.1) !important;
   color: #3AAA70 !important;
   cursor: pointer !important;
   border-radius: 2px !important;
   flex-shrink: 0 !important;
-  transition: all 0.2s !important;
 }
 
-.hl-sb-toggle:hover {
-  background: rgba(58, 170, 112, 0.2) !important;
-}
-
-.hl-sb-toggle-off {
-  border-color: #4A6080 !important;
+.hl-bar-btn.hl-off {
+  border-color: #3A5060 !important;
   background: transparent !important;
-  color: #4A6080 !important;
+  color: #3A5060 !important;
 }
 
-/* ── Post border highlighting ────────────────────────── */
-.hl-post-danger {
-  border-left: 3px solid rgba(224, 64, 64, 0.6) !important;
-  padding-left: 2px !important;
+/* ── Flagged element subtle indicator ── */
+.hl-flagged-danger {
+  border-left: 2px solid rgba(224,64,64,0.5) !important;
+  padding-left: 4px !important;
 }
 
-.hl-post-warn {
-  border-left: 3px solid rgba(208, 128, 48, 0.5) !important;
-  padding-left: 2px !important;
+.hl-flagged-warn {
+  border-left: 2px solid rgba(208,128,48,0.4) !important;
+  padding-left: 4px !important;
 }
 
-/* ── Annotation wrapper ──────────────────────────────── */
-.hl-annotation-wrap {
+/* ── Icon strip ── */
+.hl-icon-wrap {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  margin: 3px 0 6px 0 !important;
   position: relative !important;
-  width: 100% !important;
-  margin-top: 0 !important;
 }
 
-/* ── Annotation box ──────────────────────────────────── */
-.hl-annotation {
-  background: rgba(8, 14, 22, 0.97) !important;
-  border-top: 1px solid rgba(26, 58, 92, 0.4) !important;
-  border-left: 3px solid transparent !important;
-  padding: 10px 14px !important;
-  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace !important;
+.hl-icon-wrap-active .hl-icon {
+  box-shadow: 0 0 0 2px rgba(255,215,0,0.6) !important;
+}
+
+/* ── Individual icon button ── */
+.hl-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  font-family: 'JetBrains Mono','Courier New',monospace !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+  cursor: pointer !important;
+  border: 1.5px solid !important;
+  transition: transform 0.1s, opacity 0.1s !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.hl-icon:hover {
+  transform: scale(1.15) !important;
+  opacity: 0.9 !important;
+}
+
+.hl-icon-danger {
+  color: #E04040 !important;
+  background: rgba(224,64,64,0.12) !important;
+  border-color: rgba(224,64,64,0.5) !important;
+}
+
+.hl-icon-warn {
+  color: #D08030 !important;
+  background: rgba(208,128,48,0.12) !important;
+  border-color: rgba(208,128,48,0.5) !important;
+}
+
+.hl-icon-info {
+  color: #4A80D0 !important;
+  background: rgba(74,128,208,0.12) !important;
+  border-color: rgba(74,128,208,0.5) !important;
+}
+
+/* ── Popup panel ── */
+.hl-popup {
+  position: absolute !important;
+  top: 26px !important;
+  left: 0 !important;
+  z-index: 2147483646 !important;
+  background: rgba(6,10,16,0.98) !important;
+  border: 1px solid rgba(26,58,92,0.5) !important;
+  border-radius: 4px !important;
+  padding: 12px 14px !important;
+  width: 300px !important;
+  font-family: 'JetBrains Mono','Fira Code','Courier New',monospace !important;
   font-size: 11px !important;
   line-height: 1.5 !important;
-  margin: 0 !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5) !important;
+  color: #C0D0E0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
+  clip: auto !important;
 }
 
-.hl-annotation-danger {
-  border-left-color: #E04040 !important;
-}
+.hl-popup-danger { border-left: 3px solid #E04040 !important; }
+.hl-popup-warn   { border-left: 3px solid #D08030 !important; }
+.hl-popup-info   { border-left: 3px solid #4A80D0 !important; }
 
-.hl-annotation-warn {
-  border-left-color: #D08030 !important;
-}
-
-.hl-annotation-info {
-  border-left-color: #4A80D0 !important;
-}
-
-/* ── Annotation header ───────────────────────────────── */
-.hl-annotation-header {
+.hl-popup-header {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
   margin-bottom: 8px !important;
   padding-bottom: 6px !important;
-  border-bottom: 1px solid rgba(26, 58, 92, 0.3) !important;
+  border-bottom: 1px solid rgba(26,58,92,0.3) !important;
 }
 
-.hl-annotation-logo {
-  font-size: 10px !important;
-  font-weight: 600 !important;
+.hl-popup-logo {
+  font-size: 8px !important;
+  font-weight: 700 !important;
   letter-spacing: 0.15em !important;
-  color: #4A6080 !important;
+  color: #3A5060 !important;
   text-transform: uppercase !important;
 }
 
-.hl-flag-count {
+.hl-popup-close {
+  font-family: inherit !important;
   font-size: 10px !important;
-  color: #4A6080 !important;
-  letter-spacing: 0.1em !important;
+  background: none !important;
+  border: none !important;
+  color: #3A5060 !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  line-height: 1 !important;
 }
 
-/* ── Individual flag ─────────────────────────────────── */
-.hl-flag {
+.hl-popup-close:hover { color: #C0D0E0 !important; }
+
+/* Force all text inside popup to be visible regardless of host page CSS */
+.hl-popup * {
+  color: inherit !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: revert !important;
+  max-height: none !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  transform: none !important;
+  text-indent: 0 !important;
+  font-size: revert !important;
+}
+
+.hl-popup div, .hl-popup span {
+  display: block !important;
+}
+
+.hl-popup span {
+  display: inline !important;
+}
+
+.hl-popup-label {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  margin-bottom: 6px !important;
+  letter-spacing: 0.04em !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+.hl-popup-conf {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  color: #3A5060 !important;
+  margin-left: 4px !important;
+  display: inline !important;
+  visibility: visible !important;
+}
+
+.hl-popup-explanation {
+  font-size: 10px !important;
+  color: #8AACAC !important;
+  line-height: 1.7 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.hl-popup-others {
+  margin-top: 8px !important;
+  padding-top: 6px !important;
+  border-top: 1px solid rgba(26,58,92,0.2) !important;
+}
+
+.hl-popup-other {
   display: flex !important;
-  gap: 10px !important;
-  align-items: flex-start !important;
-  padding: 6px 0 !important;
-  border-bottom: 1px solid rgba(26, 58, 92, 0.15) !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 3px 0 !important;
+  font-size: 9px !important;
+  color: #4A6070 !important;
 }
 
-.hl-flag:last-child {
-  border-bottom: none !important;
-  padding-bottom: 0 !important;
-}
-
-/* ── Severity dot ────────────────────────────────────── */
-.hl-dot {
-  width: 7px !important;
-  height: 7px !important;
+.hl-popup-other-dot {
+  width: 5px !important;
+  height: 5px !important;
   border-radius: 50% !important;
   flex-shrink: 0 !important;
-  margin-top: 4px !important;
 }
 
-.hl-dot-danger { background: #E04040 !important; }
-.hl-dot-warn   { background: #D08030 !important; }
-.hl-dot-info   { background: #4A80D0 !important; }
+.hl-popup-other-label { letter-spacing: 0.02em !important; }
 
-/* ── Flag body ───────────────────────────────────────── */
-.hl-flag-body {
-  flex: 1 !important;
+/* ── Flag navigator ── */
+#hl-navigator {
+  position: fixed !important;
+  bottom: 44px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 2147483646 !important;
+  background: rgba(6,10,16,0.98) !important;
+  border: 1px solid rgba(224,64,64,0.4) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.5) !important;
+  font-family: 'JetBrains Mono','Fira Code','Courier New',monospace !important;
+  min-width: 320px !important;
+  max-width: 480px !important;
 }
 
-.hl-flag-label {
+.hl-nav-inner {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 8px 14px !important;
+  flex-wrap: wrap !important;
+}
+
+.hl-nav-label {
+  font-size: 8px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em !important;
+  color: #E04040 !important;
+  flex-shrink: 0 !important;
+}
+
+.hl-nav-counter {
   font-size: 11px !important;
-  font-weight: 600 !important;
   color: #C0D0E0 !important;
-  margin-bottom: 2px !important;
-  letter-spacing: 0.04em !important;
+  font-weight: 600 !important;
+  flex-shrink: 0 !important;
 }
 
-.hl-flag-danger .hl-flag-label { color: #E07070 !important; }
-.hl-flag-warn   .hl-flag-label { color: #D09040 !important; }
-.hl-flag-info   .hl-flag-label { color: #6A90D0 !important; }
+.hl-nav-controls {
+  display: flex !important;
+  gap: 4px !important;
+  flex-shrink: 0 !important;
+}
 
-.hl-flag-detail {
+.hl-nav-btn {
+  font-family: inherit !important;
+  font-size: 12px !important;
+  width: 28px !important;
+  height: 24px !important;
+  border: 1px solid rgba(26,58,92,0.6) !important;
+  background: rgba(26,58,92,0.2) !important;
+  color: #C0D0E0 !important;
+  cursor: pointer !important;
+  border-radius: 2px !important;
+  padding: 0 !important;
+}
+
+.hl-nav-btn:hover {
+  background: rgba(26,58,92,0.5) !important;
+  border-color: #C0D0E0 !important;
+}
+
+.hl-nav-close {
+  font-family: inherit !important;
   font-size: 10px !important;
-  color: #6A8090 !important;
-  line-height: 1.6 !important;
-  letter-spacing: 0.02em !important;
+  width: 24px !important;
+  height: 24px !important;
+  border: 1px solid rgba(139,26,26,0.4) !important;
+  background: rgba(139,26,26,0.1) !important;
+  color: #E04040 !important;
+  cursor: pointer !important;
+  border-radius: 2px !important;
+  padding: 0 !important;
 }
 
-.hl-confidence {
-  font-size: 9px !important;
-  color: #4A6080 !important;
-  font-weight: 400 !important;
+.hl-nav-close:hover { background: rgba(139,26,26,0.25) !important; }
+
+.hl-nav-preview {
+  width: 100% !important;
+  font-size: 10px !important;
+  color: #4A6070 !important;
+  padding-top: 4px !important;
+  border-top: 1px solid rgba(26,58,92,0.2) !important;
+  margin-top: 2px !important;
 }
 
-/* ── Clean post indicator ────────────────────────────── */
-.hl-clean-mark {
-  position: absolute !important;
-  top: 8px !important;
-  right: 8px !important;
-  width: 7px !important;
-  height: 7px !important;
-  border-radius: 50% !important;
-  background: rgba(58, 170, 112, 0.4) !important;
-  border: 1px solid rgba(58, 170, 112, 0.6) !important;
-  cursor: default !important;
-  z-index: 100 !important;
-}
-
-/* ── Push page content down to accommodate session bar ── */
-/* We add padding to the body so Facebook's content isn't hidden */
-body.hl-active {
-  padding-top: 44px !important;
-}
+.hl-nav-flag-label { color: #D09040 !important; font-weight: 600 !important; }
+.hl-nav-more       { color: #3A5060 !important; margin-left: 6px !important; }
+.hl-nav-pos        { color: #3A5060 !important; margin-left: 8px !important; font-size: 9px !important; }
